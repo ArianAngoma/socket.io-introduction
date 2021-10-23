@@ -14,9 +14,13 @@ app.use(express.static(__dirname + '../../public'));
 
 io.on('connection', (socket) => {
     // console.log(socket.id);
-    socket.emit('msg-welcome', {
-        msg: 'Bienvenido al server',
-        date: new Date()
+
+    /* Escuchar evento enviado desde el cliente */
+    socket.on('msg-to-server', (data) => {
+        console.log(data);
+
+        /* Emitir a todos los clientes conectados */
+        io.emit('msg-from-server', data);
     });
 });
 
