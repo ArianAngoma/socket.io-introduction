@@ -3,6 +3,9 @@ const path = require('path');
 const express = require('express');
 const socketio = require('socket.io');
 
+/* Importaciones propias */
+const Sockets = require('./sockets');
+
 class Server {
     constructor() {
         this.port = 4000;
@@ -22,7 +25,7 @@ class Server {
     }
 
     configureSockets() {
-
+        new Sockets(this.io);
     }
 
     middlewares() {
