@@ -18,6 +18,11 @@ io.on('connection', (socket) => {
         msg: 'Bienvenido al server',
         date: new Date()
     });
+
+    /* Escuchar evento enviado por cliente */
+    socket.on('msg-client', (data) => {
+        console.log(data);
+    });
 });
 
 server.listen(4000, () => {
