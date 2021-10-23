@@ -12,8 +12,12 @@ const io = require('socket.io')(server);
 /* Desplegar el directorio público */
 app.use(express.static(__dirname + '../../public'));
 
-io.on('connection', () => {
-    console.log('Cliente conectado')
+io.on('connection', (socket) => {
+    // console.log(socket.id);
+    socket.emit('msg-welcome', {
+        msg: 'Bienvenido al server',
+        date: new Date()
+    });
 });
 
 server.listen(4000, () => {
